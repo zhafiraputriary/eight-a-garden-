@@ -3,124 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eight Garden - Roblox Edition 🌱</title>
+    <title>Eight Garden - Smart Control 🌱</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
-            --rbx-sky: #87ceeb;
-            --rbx-grass: #4fcf70;
-            --rbx-leaf: #3a9b53;
-            --rbx-strawberry: #ff4747;
-            --rbx-orange: #ff9f1c;
-            --rbx-ui-bg: rgba(255, 255, 255, 0.9);
-            --radius-heavy: 24px;
-            --border-thick: 5px solid #ffffff;
-            --shadow-game: 0px 6px 0px rgba(0, 0, 0, 0.1);
+            --bg-base: #b4d9bc;
+            --glass-bg: rgba(255, 255, 255, 0.35);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --text-main: #1e3a2b;
+            --accent: #2d6a4f;
+            --btn-green: #1a4332;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: 'Nunito', sans-serif;
-            background: var(--rbx-sky);
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(255,255,255,0.3) 0%, transparent 20%),
-                linear-gradient(to bottom, #87ceeb 0%, #b0f2b4 100%);
-            color: #333;
-            padding: 20px;
-            min-height: 100vh;
+            font-family: 'Fredoka', sans-serif;
+            background: var(--bg-base) url('https://w0.peakpx.com/wallpaper/419/527/HD-wallpaper-roblox-green-nature-world.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-blend-mode: overlay;
+            color: var(--text-main);
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .container { max-width: 900px; margin: 0 auto; }
+        .container { width: 100%; max-width: 550px; }
 
         /* HEADER */
-        header {
+        .main-header {
             text-align: center;
-            margin-bottom: 30px;
-            position: relative;
-        }
-        .game-logo {
-            font-family: 'Fredoka', cursive;
-            font-size: 3.5rem;
-            font-weight: 900;
-            color: white;
-            text-shadow: 4px 4px 0px var(--rbx-leaf);
-            -webkit-text-stroke: 2px var(--rbx-leaf);
-        }
-        .deco-fruit { font-size: 2rem; vertical-align: middle; }
-
-        /* LAYOUT ASLI: GRID 2 COLUMN */
-        .main-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        /* CARD ROBX STYLE */
-        .card {
-            background: var(--rbx-ui-bg);
-            border-radius: var(--radius-heavy);
-            padding: 20px;
-            border: var(--border-thick);
-            box-shadow: var(--shadow-game);
-            margin-bottom: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* AKASEN DEKORASI TUMBUHAN */
-        .card::after {
-            content: '🌿';
-            position: absolute;
-            top: 5px;
-            right: 10px;
-            opacity: 0.2;
-            font-size: 1.5rem;
-        }
-
-        .card-title {
-            font-family: 'Fredoka', sans-serif;
-            font-weight: 900;
-            font-size: 1.2rem;
-            color: var(--rbx-leaf);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        /* INPUTS */
-        .input-group { margin-bottom: 12px; }
-        label { font-size: 0.8rem; font-weight: 800; color: #555; display: block; margin-bottom: 5px; }
-        input {
-            width: 100%;
-            padding: 10px 15px;
-            border-radius: 12px;
-            border: 3px solid #eee;
-            font-family: inherit;
+            font-size: 3rem;
             font-weight: 700;
-            background: white;
-        }
-
-        /* BUTTONS CHUNKY */
-        .btn {
-            font-family: 'Fredoka', sans-serif;
-            font-weight: 900;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: 0.1s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            width: 100%;
-            margin-bottom: 8px;
+            margin-bottom: 30px;
+            color: #fff;
+            text-shadow: 3px 3px 0px var(--accent);
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 8px;
+            gap: 15px;
         }
-        .btn-green {
-            background: var(--rbx-grass);
+
+        /* CARD GLASSMORPHISM */
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1.5px solid var(--glass-border);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        /* INPUTS */
+        .label-text { font-size: 0.75rem; font-weight: 600; margin-bottom: 6px; display: block; opacity: 0.9; }
+        input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.4);
+            border: none;
+            border-radius: 10px;
+            padding: 10px 14px;
+            margin-bottom: 12px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        /* BUTTONS */
+        .btn {
+            width
